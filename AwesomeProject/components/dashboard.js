@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
 // import firebase from '../android/app/google-services';
 import firebase from './database';
+import TabNavigator from './Navigator';
 export default class Dashboard extends Component {
   constructor() {
     super();
@@ -25,25 +26,30 @@ export default class Dashboard extends Component {
     return (
       <View style={styles.container}>
         <Text style = {styles.textStyle}>
-          Hello, {this.state.displayName}
+          Hello, {this.state.displayName}  
         </Text>
-
+        <TabNavigator />
         <Button
           color="#3740FE"
           title="Logout"
+          style={{
+            right: 5,
+            top: 5,
+             
+          }}
           onPress={() => this.signOut()}
         />
       </View>
     );
   }
 }
+ 
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     display: "flex",
-    justifyContent: 'center',
-    alignItems: 'center',
+     
     padding: 35,
     backgroundColor: '#fff'
   },
