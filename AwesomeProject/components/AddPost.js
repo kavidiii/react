@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ImagePicker from 'react-native-image-picker';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
-import { Image, View , Text, Button, Input} from 'react-native';
+import { Image, View , Button, Input, StyleSheet,TextInput,Text, Alert, ActivityIndicator} from 'react-native';
 import { withFirebaseHOC } from './utils';
 
 class AddPost extends Component {
@@ -54,40 +54,48 @@ class AddPost extends Component {
   
     render() {
       return (
-        <View style={{ flex: 1, marginTop: 60 }}>
-          <View>
-            {this.state.image ? (
-              <Image
-                source={this.state.image}
-                style={{ width: '100%', height: 300 }}
-              />
-            ) : (
-              <Button
-                onPress={this.selectImage}
-                style={{
-                  alignItems: 'center',
-                  padding: 10,
-                  margin: 30
-                }}>
-               Add_Image
-              </Button>
-            )}
-          </View>
-          <View style={{ marginTop: 80, alignItems: 'center' }}>
-            <Text category='h4'>Post Details</Text>
-            <Input
-              placeholder='Enter title of the post'
-              style={{ margin: 20 }}
-              value={this.state.title}
-              onChangeText={title => this.onChangeTitle(title)}
+        <View style={styles.inputStyle} >
+        <View>
+          {this.state.image ? (
+            <Image
+              source={this.state.image}
+              style={{ width: '100%', height: 250 }}
             />
-            <Button status='success' onPress={this.onSubmit}>
-            Add_post
-            </Button>
-          </View>
+          ) : (
+            <Button
+            onPress={this.selectImage}
+            style={{
+              alignItems: 'center',
+              padding: 5,
+              margin: 30
+            }}  title="Add an image" />
+          )}
         </View>
+        <View style={styles.container} >
+          <Text>Post Details</Text>
+          <TextInput
+            placeholder='Enter title of the post'
+            style={{ margin: 20 }}
+            value={this.state.title}
+            onChangeText={title => this.onChangeTitle(title)}
+          />
+           <Button status='success' onPress={this.onSubmit} title="Add_post"/> 
+        </View>
+      </View>
       )
     }
   }
+  const styles = StyleSheet.create({
+    container: {
+      marginTop: 30,
+      alignItems: 'center' 
+    },
+    inputStyle: {
+      flex: 1, 
+      marginTop: 15
+    },
+     
+  });
+   
   
   export default withFirebaseHOC(AddPost)
