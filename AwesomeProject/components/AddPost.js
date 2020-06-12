@@ -3,6 +3,10 @@ import ImagePicker from 'react-native-image-picker';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import { Image, View , Button, Input, StyleSheet,TextInput,Text, Alert, ActivityIndicator} from 'react-native';
 import { withFirebaseHOC } from './utils';
+import firebase from 'react-native-firebase'
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
+
 
 class AddPost extends Component {
     state = {
@@ -41,7 +45,7 @@ class AddPost extends Component {
           title: this.state.title
         }
         this.props.firebase.uploadPost(post)
-  
+          
         this.setState({
           image: null,
           title: '',

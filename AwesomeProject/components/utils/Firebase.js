@@ -1,9 +1,10 @@
 import firebase from 'react-native-firebase'
-import uuid from 'uuid'
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
 
 const Firebase = {
   uploadPost: post => {
-    const id = uuid.v4()
+    const id = uuidv4()
     const uploadData = {
       id: id,
       postPhoto: post.photo,

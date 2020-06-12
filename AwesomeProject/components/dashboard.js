@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, Button } from 'react-native';
 // import firebase from '../android/app/google-services';
 import firebase from './database';
 import TabNavigator from './Navigator';
+import Firebase, { FirebaseProvider } from './utils';
 export default class Dashboard extends Component {
   constructor() {
     super();
@@ -28,7 +29,9 @@ export default class Dashboard extends Component {
         <Text style = {styles.textStyle}>
           Hello, {this.state.displayName}  
         </Text>
+        <FirebaseProvider value={Firebase}>
         <TabNavigator />
+      </FirebaseProvider>
         <Button
           color="#3740FE"
           title="Logout"
